@@ -1,13 +1,22 @@
-import {GET_USER_INFO_FAILED, GET_USER_INFO_SUCCESS, GET_USER_REPOS_SUCCESS} from "../actions";
+import {
+    GET_ISSUES_FOR_REPO_SUCCESS,
+    GET_USER_INFO_FAILED,
+    GET_USER_INFO_SUCCESS,
+    GET_USER_REPOS_SUCCESS,
+    SELECT_REPO
+} from "../actions";
 
 const initialState = {
     currentUser: null,
-    userRepos: null
+    userRepos: null,
+    issues: null,
+    repo: '',
+    issuesCount: 0
 }
 
 export default (state = initialState, action) => {
     const {type, payload } = action;
-    console.log(payload)
+
     switch (type) {
         case GET_USER_INFO_SUCCESS :
             return {
@@ -26,6 +35,26 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 userRepos: payload.repos,
+            };
+
+        case GET_ISSUES_FOR_REPO_SUCCESS :
+            if (payload.loadData.page === 1) {
+                let currentRepo = state.userRepos.find(item => item.name === payload.repo);
+                console.log(state.userRepos, payload.repo, "currentRepo");
+                return {
+                    ...state,
+                    issuesCount: currentRepo.open_issues_count,
+                    issues: payload.issues,
+                };
+            }
+            return {
+                ...state,
+                issues: payload.issues,
+            };
+        case SELECT_REPO :
+            return {
+                ...state,
+                repo: payload.repo,
             };
     }
 }
