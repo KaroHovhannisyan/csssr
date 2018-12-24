@@ -11,7 +11,7 @@ const initialState = {
     userRepos: null,
     issues: null,
     repo: '',
-    issuesCount: 0
+    issuesCount: null
 }
 
 export default (state = initialState, action) => {
@@ -21,7 +21,9 @@ export default (state = initialState, action) => {
         case GET_USER_INFO_SUCCESS :
             return {
                 ...state,
-                currentUser: payload.user
+                currentUser: payload.user,
+                repo: '',
+                issuesCount : null
             };
 
         case GET_USER_INFO_FAILED :
