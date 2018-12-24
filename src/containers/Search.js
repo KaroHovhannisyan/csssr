@@ -11,12 +11,18 @@ class Search extends React.Component{
         }
     }
 
+    submit(e){
+        const { userName } = this.state;
+        const { attemptGetUserInfo } = this.props;
+        e.preventDefault();
+        attemptGetUserInfo(userName)
+    }
+
     render(){
        const { userName } = this.state;
-       const { attemptGetUserInfo } = this.props;
        return (
            <div>
-               <form>
+               <form onSubmit={e => this.submit(e)}>
                    <div className="inner-form">
                        <div className="input-field first-wrap">
                            <input type={"text"}
@@ -27,10 +33,7 @@ class Search extends React.Component{
                            />
                        </div>
                        <div className="input-field third-wrap">
-                           <button className="btn-search"
-                                   type="button"
-                                   onClick={() => attemptGetUserInfo(userName)}
-                           >
+                           <button className="btn-search" type="button">
                                Search
                            </button>
                        </div>

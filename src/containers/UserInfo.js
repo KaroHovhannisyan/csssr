@@ -27,7 +27,14 @@ class UserInfo extends React.Component{
     }
 
     render(){
-       const { currentUser, userRepos, selectRepo, repo } = this.props;
+       const { currentUser, userRepos, selectRepo, repo, error } = this.props;
+
+       if(error){
+           return  <div className={"user_profile"}>
+               <h1>User doesn`t exist!!!</h1>
+           </div>
+       }
+
        if(!currentUser){
            return null;
        }
@@ -68,6 +75,7 @@ const mapStateToProps = (state) => {
         currentUser: state.currentUser,
         userRepos: state.userRepos ? state.userRepos.map(e => e.name) : null,
         repo: state.repo,
+        error: state.error
     }
 }
 
