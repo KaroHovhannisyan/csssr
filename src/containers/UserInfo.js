@@ -6,20 +6,26 @@ class UserInfo extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            userName: ""
+            repo: ""
         }
     }
 
-    componentDidUpdate(){
+    componentDidUpdate(prevProps){
         const { currentUser, userRepos, attemptGetUserRepos } = this.props;
-        if(currentUser && !userRepos){
-            alert("ss")
-            attemptGetUserRepos(currentUser.login)
+        if(currentUser){
+            if(prevProps.currentUser && (prevProps.currentUser.login !== currentUser.login)){
+                attemptGetUserRepos(currentUser.login)
+            }
+
+            if(!userRepos){
+                attemptGetUserRepos(currentUser.login)
+            }
         }
     }
 
     render(){
-       const { currentUser, userRepos } = this.props;
+       const { currentUser, userRepos, getRepoIssues } = this.props;
+       const { repo } = this.state;
        if(!currentUser){
            return null;
        }
@@ -35,11 +41,13 @@ class UserInfo extends React.Component{
                    </div>
                    <form method="get">
                        Select Repo
-                       <input list="repos" name="browser" />
+                       {userRepos && userRepos.length ? (<div>
+                           <input list="repos" name="browser"  value={repo} onChange={({target}) => this.setState({repo: target.value})}/>
                            <datalist id="repos">
-                               {userRepos && userRepos.map(repo => <option  key={repo} value={repo} /> )}
+                               {userRepos.map(repo => <option  key={repo} value={repo} /> )}
                            </datalist>
-                           <input type="submit" />
+                           <button onClick={() => getRepoIssues(currentUser.login, repo)}>Search</button>
+                       </div>) : <p>User have not any repositories(</p> }
                    </form>
 
                </div>
@@ -62,7 +70,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        attemptGetUserRepos: (userName) => dispatch(attemptGetUserRepos(userName))
+        attemptGetUserRepos: (userName) => dispatch(attemptGetUserRepos(userName)),
+        getRepoIssues: (userName, repo) => null
     }
 }
 

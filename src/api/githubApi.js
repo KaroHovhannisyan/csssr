@@ -20,4 +20,12 @@ export default class githubApi {
             }
         })
     }
+
+    getRepoIssues(username, repo){
+        return fetch(`${urls[this.env].apiUrl}/repos/${username}/${repo}/issues`, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    }
 }
