@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development --port 3000"
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development  --host 0.0.0.0 --port 3000"
   },
   "keywords": [],
   "author": "Karo Hovhannisyan",
@@ -21,6 +21,7 @@
     "webpack-dev-server": "^3.1.13"
   },
   "dependencies": {
+    "fetch-intercept": "^2.3.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   }
