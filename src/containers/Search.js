@@ -16,11 +16,22 @@ class Search extends React.Component{
        const { attemptGetUserInfo } = this.props;
        return (
            <div>
-                   <input type={"text"}
-                          value={userName}
-                          onChange={({target}) => this.setState({userName: target.value})}
-                   />
-                   <button onClick={() => attemptGetUserInfo(userName)}>Поиск</button>
+               <form>
+                   <div className="inner-form">
+                       <div className="input-field first-wrap">
+                           <input type={"text"}
+                                  id="search"
+                                  placeholder="Search Github username"
+                                  value={userName}
+                                  onChange={({target}) => this.setState({userName: target.value})}
+                           />
+                       </div>
+                       <div className="input-field third-wrap">
+                           <button className="btn-search" type="button" onClick={() => attemptGetUserInfo(userName)}>Поиск</button>
+                       </div>
+                   </div>
+               </form>
+
            </div>
        )
    }

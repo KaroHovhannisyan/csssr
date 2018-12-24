@@ -21,9 +21,11 @@ export default class App extends Component {
     render(){
         return (
             <Provider store={store}>
-                <Search/>
-                <UserInfo/>
-                <IssuesList/>
+                <div className={"s01"}>
+                    <Search/>
+                    <UserInfo/>
+                    <IssuesList/>
+                </div>
             </Provider>
         )
     }
