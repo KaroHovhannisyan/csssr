@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import ReactPaginate from 'react-paginate';
 import {attemptGetIssuesForRepo} from "../redux/actions";
+import Issue from "../components/Issue";
 
 class IssuesList extends React.Component{
     constructor(props){
@@ -25,6 +26,11 @@ class IssuesList extends React.Component{
 
     render(){
         const { issues, currentUser, issuesCount } = this.props;
+
+        if(issuesCount === 0){
+            return (<div>User repo haven`t issues</div>)
+        }
+
         if(!currentUser || !issuesCount){
             return null;
         }
@@ -32,13 +38,11 @@ class IssuesList extends React.Component{
 
         return (
             <div>
-                <ul>
                     {issues.map((item, i) => {
                         return (
-                            <li key={i}>{item.title}</li>
+                            <Issue key={i} {...item} />
                         );
                     })}
-                </ul>
                 <ReactPaginate previousLabel={"previous"}
                                nextLabel={"next"}
                                breakLabel={"..."}
