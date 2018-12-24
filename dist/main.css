@@ -1,12 +1,41 @@
 .user_profile {
-    margin-top: 20px;
-    border: 1px solid silver;
     display: flex;
+    background-color: #181d28;
+    color: white;
+    margin-top: 20px;
+    opacity: 0.9;
 }
+.user_profile_button {
+    color: white;
+    background-color: #4272d7;
+    height: 32px;
+    border: none;
+}
+.user_profile_input {
+    height: 32px;
+    border: none;
+    color: black;
+    padding: 5px;
+}
+
+.user_info_form {
+    text-align: center;
+    padding: 25px;
+    width: 66%;
+/* float: left; */
+    margin: 10px 0px 10px 0px;
+}
+.userInfo {
+    min-width: 160px;
+    padding: 10px;
+    margin: 10px 10px 10px 10px;
+}
+
 .user_profile img {
-    height: 70px;
-    width: 70px;
+    height: 80px;
+    width: 80px;
     border-radius: 35px;
+    margin: 60px 5px 60px 5px;
 }
 
 html {

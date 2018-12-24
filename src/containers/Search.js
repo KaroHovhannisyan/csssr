@@ -27,7 +27,12 @@ class Search extends React.Component{
                            />
                        </div>
                        <div className="input-field third-wrap">
-                           <button className="btn-search" type="button" onClick={() => attemptGetUserInfo(userName)}>Поиск</button>
+                           <button className="btn-search"
+                                   type="button"
+                                   onClick={() => attemptGetUserInfo(userName)}
+                           >
+                               Search
+                           </button>
                        </div>
                    </div>
                </form>

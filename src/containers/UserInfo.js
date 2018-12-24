@@ -36,20 +36,19 @@ class UserInfo extends React.Component{
            <div>
                <div className={"user_profile"}>
                    <img src={currentUser.avatar_url} />
-                   <div>
+                   <div className="userInfo">
                        <h1>{currentUser.login}</h1>
                        <span>{currentUser.bio}</span>
                        <p>{currentUser.created_at}</p>
                        <a href={currentUser.html_url} target={"_blank"}>Go to Profile</a>
                    </div>
-                   <form method="post" onSubmit={(e) => this.handleSubmit(e)}>
-                       Select Repo
+                   <form className="user_info_form" method="post" onSubmit={(e) => this.handleSubmit(e)}>
                        {userRepos && userRepos.length ? (<div>
-                           <input list="repos" value={repo} onChange={({target}) => selectRepo(target.value)}/>
+                           <input placeholder="Select Repo" className="user_profile_input" list="repos" value={repo} onChange={({target}) => selectRepo(target.value)}/>
                            <datalist id="repos">
                                {userRepos.map(repo => <option  key={repo} value={repo} /> )}
                            </datalist>
-                           <button type="submit">Search</button>
+                           <button className="user_profile_button"  type="submit">See issues</button>
                        </div>) : <p>User have not any repositories(</p> }
                    </form>
 
