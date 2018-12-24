@@ -17,6 +17,12 @@ fetchInterceptor();
 
 const store = createStore(mainReducer, applyMiddleware(githubApiMiddleWare));
 
+function handleChange() {
+    console.log(store.getState())
+}
+
+store.subscribe(handleChange)
+
 export default class App extends Component {
     render(){
         return (

@@ -23,14 +23,15 @@ export default (state = initialState, action) => {
                 ...state,
                 currentUser: payload.user,
                 repo: '',
-                issuesCount : null
+                issuesCount : null,
+                error: null
             };
 
         case GET_USER_INFO_FAILED :
             return {
                 ...state,
                 currentUser: null,
-                error: payload.error.message
+                error: "Not Found!!"
             };
 
         case GET_USER_REPOS_SUCCESS :
