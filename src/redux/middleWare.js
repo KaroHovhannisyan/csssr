@@ -1,10 +1,15 @@
 import githubApi from "../api/githubApi";
 import {
+    ATTEMPT_GET_ISSUES_FOR_REPO,
     ATTEMPT_GET_USER_INFO,
     ATTEMPT_GET_USER_REPOS,
     attemptGetUserRepos,
     getUserInfoFailed,
-    getUserInfoSuccess, getUserReposFailed, getUserReposSuccess
+    getUserInfoSuccess,
+    getUserReposFailed,
+    getUserReposSuccess,
+    getIssuesForRepoSuccess,
+    getIssuesForRepoFailed
 } from "./actions";
 
 const API = new githubApi();
@@ -37,6 +42,21 @@ const  githubApiMiddleWare = store => next => action => {
                 .catch(error => next(getUserReposFailed(error)));
             break;
         }
+
+        case ATTEMPT_GET_ISSUES_FOR_REPO : {
+            API.getRepoIssues(payload.username, payload.repo, payload.loadData)
+                .then(res => {
+                    if(!res.message){
+                        next(getIssuesForRepoSuccess(res,payload.repo, payload.loadData))
+                    } else {
+                        next(getIssuesForRepoFailed(res))
+                    }
+                })
+                .catch(error => next(getIssuesForRepoFailed(error)));
+            break;
+        }
+        default:
+            next(action)
     }
 }
 

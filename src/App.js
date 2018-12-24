@@ -8,6 +8,7 @@ import fetchInterceptor from "./api/fetchInterceptor";
 
 import Search from "./containers/Search";
 import UserInfo from "./containers/UserInfo";
+import IssuesList from "./containers/IssuesList";
 
 /**
  * fetch interceptor is middleware for fetch request/response
@@ -20,8 +21,9 @@ export default class App extends Component {
     render(){
         return (
             <Provider store={store}>
-               <Search/>
+                <Search/>
                 <UserInfo/>
+                <IssuesList/>
             </Provider>
         )
     }

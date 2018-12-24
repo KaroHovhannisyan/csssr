@@ -1,13 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import {attemptGetIssuesForRepo, attemptGetUserRepos} from "../redux/actions";
+import {attemptGetIssuesForRepo, attemptGetUserRepos, selectRepo} from "../redux/actions";
 
 class UserInfo extends React.Component{
     constructor(props){
         super(props);
-        this.state = {
-            repo: ""
-        }
     }
 
     componentDidUpdate(prevProps){
@@ -23,13 +20,19 @@ class UserInfo extends React.Component{
         }
     }
 
+    handleSubmit(e) {
+        e.preventDefault();
+        const { currentUser, getRepoIssues, repo } = this.props;
+        getRepoIssues(currentUser.login, repo, {page: 1, per_page: 5});
+    }
+
     render(){
-       const { currentUser, userRepos, getRepoIssues } = this.props;
-       const { repo } = this.state;
+       const { currentUser, userRepos, selectRepo, repo } = this.props;
        if(!currentUser){
            return null;
        }
-       return (
+
+        return (
            <div>
                <div className={"user_profile"}>
                    <img src={currentUser.avatar_url} />
@@ -39,14 +42,14 @@ class UserInfo extends React.Component{
                        <p>{currentUser.created_at}</p>
                        <a href={currentUser.html_url} target={"_blank"}>Go to Profile</a>
                    </div>
-                   <form method="get">
+                   <form method="post" onSubmit={(e) => this.handleSubmit(e)}>
                        Select Repo
                        {userRepos && userRepos.length ? (<div>
-                           <input list="repos" name="browser"  value={repo} onChange={({target}) => this.setState({repo: target.value})}/>
+                           <input list="repos" value={repo} onChange={({target}) => selectRepo(target.value)}/>
                            <datalist id="repos">
                                {userRepos.map(repo => <option  key={repo} value={repo} /> )}
                            </datalist>
-                           <button onClick={() => getRepoIssues(currentUser.login, repo)}>Search</button>
+                           <button type="submit">Search</button>
                        </div>) : <p>User have not any repositories(</p> }
                    </form>
 
@@ -64,14 +67,16 @@ const mapStateToProps = (state) => {
     }
     return {
         currentUser: state.currentUser,
-        userRepos: state.userRepos ? state.userRepos.map(e => e.name) : null
+        userRepos: state.userRepos ? state.userRepos.map(e => e.name) : null,
+        repo: state.repo,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         attemptGetUserRepos: (userName) => dispatch(attemptGetUserRepos(userName)),
-        getRepoIssues: (userName, repo) => dispatch(attemptGetIssuesForRepo(userName, repo))
+        getRepoIssues: (userName, repo, loadData) => dispatch(attemptGetIssuesForRepo(userName, repo, loadData)),
+        selectRepo: (repo) => dispatch(selectRepo(repo)),
     }
 }
 
