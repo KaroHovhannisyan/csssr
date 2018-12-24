@@ -20,4 +20,14 @@ export const attemptGetUserRepos = (username) => ({type: ATTEMPT_GET_USER_REPOS,
 export const getUserReposSuccess = (repos) => ({type: GET_USER_REPOS_SUCCESS, payload: {repos}});
 export const getUserReposFailed = (error) => ({type: GET_USER_REPOS_FAILED, payload: {error}});
 
+/**
+ * Get Issues for current repository
+ */
+
+export const ATTEMPT_GET_ISSUES_FOR_REPO = "ATTEMPT_GET_ISSUES_FOR_REPO";
+export const GET_ISSUES_FOR_REPO_SUCCESS = "GET_ISSUES_FOR_REPO_SUCCESS";
+export const GET_ISSUES_FOR_REPO_FAILED = "GET_ISSUES_FOR_REPO_FAILED";
+export const attemptGetIssuesForRepo = (username, repo) => ({type: ATTEMPT_GET_ISSUES_FOR_REPO, payload: { username, repo }});
+export const getIssuesForRepoSuccess = (issues) => ({type: GET_ISSUES_FOR_REPO_SUCCESS, payload: { issues }});
+export const getIssuesForRepoFailed = (error) => ({type: GET_ISSUES_FOR_REPO_FAILED, payload: { error }});
 

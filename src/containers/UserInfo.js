@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {attemptGetUserRepos} from "../redux/actions";
+import {attemptGetIssuesForRepo, attemptGetUserRepos} from "../redux/actions";
 
 class UserInfo extends React.Component{
     constructor(props){
@@ -71,7 +71,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         attemptGetUserRepos: (userName) => dispatch(attemptGetUserRepos(userName)),
-        getRepoIssues: (userName, repo) => null
+        getRepoIssues: (userName, repo) => dispatch(attemptGetIssuesForRepo(userName, repo))
     }
 }
 
