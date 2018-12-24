@@ -15,7 +15,7 @@
     height: 32px;
     border: none;
     color: black;
-    padding: 5px;
+    margin: 0px -10px 0px -25px;
 }
 
 .user_info_form {
@@ -36,6 +36,12 @@
     width: 80px;
     border-radius: 35px;
     margin: 60px 5px 60px 5px;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
 }
 
 html {

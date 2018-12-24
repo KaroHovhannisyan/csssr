@@ -28,7 +28,9 @@ class IssuesList extends React.Component{
         const { issues, currentUser, issuesCount } = this.props;
 
         if(issuesCount === 0){
-            return (<div>User repo haven`t issues</div>)
+            return (<div className="alert">
+                User repo haven`t issues
+            </div>)
         }
 
         if(!currentUser || !issuesCount){
