@@ -149,6 +149,7 @@ img {
     cursor: pointer;
     width: 100%;
     font-size: 18px;
+}
 
 .State--green {
     background-color: #2cbe4e;
