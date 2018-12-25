@@ -33,7 +33,7 @@ class Search extends React.Component{
                            />
                        </div>
                        <div className="input-field third-wrap">
-                           <button className="btn-search" type="button">
+                           <button className="btn-search" type="submit">
                                Search
                            </button>
                        </div>

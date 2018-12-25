@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {attemptGetIssuesForRepo, attemptGetUserRepos, selectRepo} from "../redux/actions";
 
 class UserInfo extends React.Component{
@@ -58,7 +59,7 @@ class UserInfo extends React.Component{
                            <button className="user_profile_button"  type="submit">See issues</button>
                        </div>) : <p>User have not any repositories(</p> }
                    </form>
-
+                   <Link to={`/users?${currentUser.login}`}>Hello</Link>
                </div>
 
 
