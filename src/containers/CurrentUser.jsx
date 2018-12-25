@@ -16,20 +16,43 @@ class CurrentUser extends React.Component{
             return null
         }
 
-        return <div>
+        return <div className="card">
             <img src={currentUser.avatar_url} />
-            <h1>{currentUser.login}</h1>
-            <p>Info: {currentUser.info}</p>
-            <p>BIO:  {currentUser.bio}</p>
-            <p>BLOG:  {currentUser.blog}</p>
-            <p>EMAIL:  {currentUser.email}</p>
-            <p>CREATED:  {currentUser.created_at}</p>
-            <p>UPDATED:  {currentUser.updated_at}</p>
-            <p>FOLOWERS:  {currentUser.followers}</p>
-            <p>FOLOWING:  {currentUser.following}</p>
-            <p>URL:  {currentUser.html_url}</p>
-            <p>NAME:  {currentUser.name}</p>
-            <p>PUBLIC REPOS:  {currentUser.public_repos}</p>
+            <h1 className="title">{currentUser.login}</h1>
+            {
+                (currentUser.info && <p><span>Info:</span> {currentUser.info}</p>)
+            }
+            {
+                (currentUser.bio && <p><span>BIO:</span> {currentUser.bio}</p>)
+            }
+            {
+                (currentUser.blog && <p><span>BLOG:</span> {currentUser.blog}</p>)
+            }
+            {
+                (currentUser.email && <p><span>EMAIL:</span> {currentUser.email}</p>)
+            }
+            {
+                (currentUser.created_at && <p><span>CREATED:</span> {currentUser.created_at}</p>)
+            }
+            {
+                (currentUser.updated_at && <p><span>UPDATED:</span> {currentUser.updated_at}</p>)
+            }
+            {
+                (currentUser.followers !== 0 && <p><span>FOLOWERS:</span> {currentUser.followers}</p>)
+            }
+            {
+                (currentUser.following !==0 && <p><span>FOLOWING:</span> {currentUser.following}</p>)
+            }
+            {
+                (currentUser.html_url && <p><span>URL:</span> <a href={currentUser.html_url} target="_blank">{currentUser.html_url}</a></p>)
+            }
+            {
+                (currentUser.name && <p><span>NAME:</span> {currentUser.name}</p>)
+            }
+            {
+                (currentUser.public_repos !==0 && <p><span>PUBLIC REPOS:</span> {currentUser.public_repos}</p>)
+            }
+            <button onClick={()=> this.props.history.push('/')}>Main page</button>
         </div>
     }
 }
