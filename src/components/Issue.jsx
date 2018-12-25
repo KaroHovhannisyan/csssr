@@ -14,7 +14,7 @@ const Issue = (props) => (<div className='issue'>
             </svg>
             {props.state.toUpperCase()}
         </div>
-        <symbol>Created by :<span>{props.user.login}</span></symbol>
+        <symbol>Created by :<span>{props.user && props.user.login}</span></symbol>
         <span>Opened In : {props.created_at}</span>
     </div>
     <div>

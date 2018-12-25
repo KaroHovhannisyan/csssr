@@ -3,7 +3,7 @@ import githubApi from "../api/githubApi";
 import { connect } from "react-redux";
 import { attemptGetUserInfo } from "../redux/actions";
 
-class Search extends React.Component{
+export class Search extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -39,15 +39,9 @@ class Search extends React.Component{
                        </div>
                    </div>
                </form>
-
            </div>
        )
    }
-}
-
-const mapStateToProps = (state, ownProps = {}) => {
-    return {
-    }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -57,4 +51,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default connect(null, mapDispatchToProps)(Search)
