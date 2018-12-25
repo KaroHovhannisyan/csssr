@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import {attemptGetIssuesForRepo, attemptGetUserRepos, selectRepo} from "../redux/actions";
 
-class UserInfo extends React.Component{
+export class UserInfo extends React.Component{
     constructor(props){
         super(props);
     }
