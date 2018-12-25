@@ -178,18 +178,50 @@ svg:not(:root) {
     overflow: hidden;
 }
 
-.issue {    background-color: #1a202c;
-    opacity: 0.99;
-    color: white;
-    text-align: center;
+.issue {
+    background-color: #fff;
+    color: #000;
+    text-align: left;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.issue .mainInfo {
+    display: flex;
+}
+
+.issue .owner {
+    display: flex;
+    justify-content: space-between;
+}
+.issue .mainInfo h2 {
+    color: #a3aab1;
+    margin-left: 10px;
+    font-size: 28px;
 }
 .issue > p {
     text-align: left;
     margin: 0px 0px 0px 20px;
 }
 .issue > h1 {
-    color: bisque;
+    color: #000;
 }
+.State {
+    background-color: #6a737d;
+    border-radius: 3px;
+    color: #fff;
+    display: inline-block;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 4px 8px;
+    text-align: center;
+}
+
+.State--green {
+    background-color: #2cbe4e;
+}
+
+
 /* Forms
    ========================================================================== */
 /**
